@@ -29,11 +29,13 @@ public class geturl {
                 //获得查询字符串(get)
                 String queryString =  exchange.getRequestURI().getQuery();
                 Map<String,String> queryStringInfo = formData2Dic(queryString);
+                System.out.println(queryStringInfo.toString());
+//                response = response + queryStringInfo.toString();
                 //获得表单提交数据(post)
                 String postString = IOUtils.toString(exchange.getRequestBody());
                 Map<String,String> postInfo = formData2Dic(postString);
                 System.out.println(postString.toString());
-
+                response = response + "\n"+postString;
                 exchange.sendResponseHeaders(200,0);
                 OutputStream os = exchange.getResponseBody();
                 os.write(response.getBytes());
