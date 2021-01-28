@@ -35,7 +35,7 @@ public class SimpleHttpServer {
         @Override
         public void handle(HttpExchange exchange) {
             String response = "hello world";
-            System.out.println("线程名："+Thread.currentThread().getName());
+            System.err.println("test线程名："+Thread.currentThread().getName());
             try{
                 //获得查询字符串(get)
                 if(exchange.getRequestMethod().equalsIgnoreCase("GET")) {
@@ -86,7 +86,7 @@ public class SimpleHttpServer {
     //8000:info
     static class InfoHeader implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            System.out.println("线程名："+Thread.currentThread().getName());
+            System.err.println("info线程名："+Thread.currentThread().getName());
             String response = "Use /get to download a PDF";
             t.sendResponseHeaders(200,response.length());
             OutputStream os = t.getResponseBody();
@@ -98,7 +98,7 @@ public class SimpleHttpServer {
     //8000:get
     static class GetHeader implements HttpHandler {
         public void handle(HttpExchange t ) throws IOException{
-            System.out.println("线程名："+Thread.currentThread().getName());
+            System.err.println("get线程名："+Thread.currentThread().getName());
             Headers h = t.getResponseHeaders();
             h.add("Content-Type","application/pdf");
 

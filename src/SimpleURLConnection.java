@@ -8,14 +8,18 @@ public class SimpleURLConnection {
     public static void main(String[] args) {
 //        System.out.println("simple URLConnection");
         GetDemo demo = new GetDemo();
-        demo.doGet();
+        for(int i =0;i<20;i++){
+            System.out.println("第"+(i+1)+"次请求");
+            demo.doGet();
+        }
+//        demo.doGet();
     }
     static class GetDemo{
         public void doGet(){
             HttpURLConnection httpURLConnection = null;
             try{
                 //1.得到访问地址
-                URL url = new URL("http://127.0.0.1:8001/test");
+                URL url = new URL("http://127.0.0.1:8001/test?name=gjt&age=20");
                 //2.得到访问网络访问对象java.net.HttpURLConnection
                 httpURLConnection = (HttpURLConnection) url.openConnection();
                 //3.设置请求参数
